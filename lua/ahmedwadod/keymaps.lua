@@ -9,10 +9,10 @@ vim.keymap.set({ 'n' }, '<S-D-.>', '5<C-w>>')
 vim.keymap.set({ 'n' }, '<S-D-,>', '5<C-w><')
 vim.keymap.set({ 'n' }, '<C-=>', '5<C-w>+')
 vim.keymap.set({ 'n' }, '<C-->', '5<C-w>-')
--- Navigate windows with <D-jkl> key
-vim.keymap.set({ 'n' }, '<D-k>', '<C-w>k')
-vim.keymap.set({ 'n' }, '<D-j>', '<C-w>j')
+-- Navigate windows
 vim.keymap.set({ 'n' }, '<D-l>', '<C-w>w')
+-- Exit terminal mode with <Esc><Esc>
+vim.keymap.set({ 't' }, '<Esc><Esc>', '<C-\\><C-n>')
 
 -- Telescope Shortcuts
 local ts = require('telescope.builtin')
