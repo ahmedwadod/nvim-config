@@ -32,20 +32,13 @@ cmp.setup({
 		-- `Enter` key to confirm completion
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-		-- Tab to navigate
-		['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-
-		-- Ctrl+Space to trigger completion menu
-		['<C-Space>'] = function()
+		-- Ctrl twice to trigger completion menu
+		['<D-Down>'] = function()
 			if cmp.visible() then
 				cmp.close()
 			else
 				cmp.complete()
 			end
 		end,
-
-		-- Navigate between snippet placeholder
-		['<C-f>'] = cmp_action.luasnip_jump_forward(),
-		['<C-b>'] = cmp_action.luasnip_jump_backward(),
 	})
 })

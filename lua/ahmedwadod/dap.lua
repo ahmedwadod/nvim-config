@@ -2,8 +2,8 @@ local dap = require('dap')
 
 vim.keymap.set('n', '<F5>', function() dap.continue() end) -- Will run the app
 vim.keymap.set('n', '<C-b>', function() dap.toggle_breakpoint() end)
-vim.keymap.set('n', '<C-s>', function() dap.step_over() end)
-vim.keymap.set('n', '<C-<Down>>', function() dap.step_into() end)
+vim.keymap.set('n', '<C-n>', function() dap.step_over() end)
+vim.keymap.set('n', '<C-i>', function() dap.step_into() end)
 vim.keymap.set('n', '<leader>i', function() dap.repl.open() end)
 
 vim.keymap.set('n', '<Leader>df', function()
@@ -20,7 +20,7 @@ require('flutter-tools').setup({
 	debugger = {
 		enabled = true,
 		run_via_dap = true,
-		exception_breakpoints = {"raised"}
+		exception_breakpoints = { "raised" }
 	},
 	dev_log = {
 		enabled = false,

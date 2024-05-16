@@ -1,5 +1,12 @@
 require('ahmedwadod.settings')
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -25,7 +32,7 @@ require("lazy").setup({
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html" },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -52,6 +59,24 @@ require("lazy").setup({
 			'nvim-lua/plenary.nvim',
 		},
 		config = true,
+	},
+
+	-- Other
+	"github/copilot.vim",
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require("lualine").setup()
+		end
+	},
+	{
+		'nvim-tree/nvim-tree.lua',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require("nvim-tree").setup()
+		end
+
 	}
 })
 
