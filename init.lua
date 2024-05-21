@@ -22,7 +22,18 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "rose-pine/neovim",              lazy = false },
-	{ "nvim-telescope/telescope.nvim", tag = "0.1.5", dependencies = { "nvim-lua/plenary.nvim" } },
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").setup {
+				defaults = {
+					file_ignore_patterns = { "build/", "node_modules/" },
+				}
+			}
+		end
+	},
 	{ "lukas-reineke/lsp-format.nvim", lazy = false },
 
 	{
