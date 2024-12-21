@@ -21,7 +21,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "rose-pine/neovim",                 lazy = false },
+	{ "catppuccin/nvim",                  lazy = false },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
@@ -29,7 +29,7 @@ require("lazy").setup({
 		config = function()
 			require("telescope").setup {
 				defaults = {
-					file_ignore_patterns = { "build/", "node_modules/" },
+					file_ignore_patterns = { "build/", "node_modules/", ".next/" },
 				}
 			}
 		end
