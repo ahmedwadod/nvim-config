@@ -21,7 +21,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "rose-pine/neovim",              lazy = false },
+	{ "rose-pine/neovim",                 lazy = false },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
@@ -34,8 +34,6 @@ require("lazy").setup({
 			}
 		end
 	},
-	{ "lukas-reineke/lsp-format.nvim", lazy = false },
-
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -88,10 +86,10 @@ require("lazy").setup({
 			require("nvim-tree").setup()
 		end
 
-	}
+	},
 })
 
---- Needs to be here!
+-- Needs to be here!
 require('ahmedwadod.color')
 require('ahmedwadod.keymaps')
 require('ahmedwadod.lsp')

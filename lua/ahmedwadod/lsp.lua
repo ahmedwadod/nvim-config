@@ -1,8 +1,6 @@
 local lsp_zero = require('lsp-zero')
-require("lsp-format").setup({})
 
 lsp_zero.on_attach(function(client, bufnr)
-	require("lsp-format").on_attach(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
@@ -15,12 +13,27 @@ vim.diagnostic.config({
 	float = true,
 })
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-	ensure_installed = { 'lua_ls' },
-	handlers = {
-		lsp_zero.default_setup,
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		"ts_ls"
 	},
+})
+
+-- automatically install ensure_installed servers
+require("mason-lspconfig").setup_handlers({
+	-- Will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	--
+	function(server_name) -- default handler (optional)
+		-- https://github.com/neovim/nvim-lspconfig/pull/3232
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		require("lspconfig")[server_name].setup({
+
+			capabilities = capabilities,
+		})
+	end,
 })
 
 local cmp = require('cmp')
@@ -32,7 +45,7 @@ cmp.setup({
 		-- `Enter` key to confirm completion
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-		-- Ctrl twice to trigger completion menu
+		-- Cmd+Down to toggle completion
 		['<D-Down>'] = function()
 			if cmp.visible() then
 				cmp.close()
@@ -41,4 +54,21 @@ cmp.setup({
 			end
 		end,
 	})
+})
+
+
+-- Auto format on save
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+	group = augroup,
+	callback = function()
+		local clients = vim.lsp.get_active_clients()
+		for _, client in ipairs(clients) do
+			if client.server_capabilities.documentFormattingProvider then
+				vim.lsp.buf.format({ async = false })
+				break
+			end
+		end
+	end,
 })
