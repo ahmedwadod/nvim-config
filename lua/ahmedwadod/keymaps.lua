@@ -24,3 +24,4 @@ vim.keymap.set('n', '<leader>sg', ts.live_grep, {})
 
 -- Nvim Tree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {})
+vim.keymap.set('n', '<leader>fe', ':NvimTreeFindFile<CR>', {})

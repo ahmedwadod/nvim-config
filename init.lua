@@ -83,7 +83,13 @@ require("lazy").setup({
 		'nvim-tree/nvim-tree.lua',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
-			require("nvim-tree").setup()
+			require("nvim-tree").setup({
+				filters = {
+					dotfiles = false,
+					git_ignored = false,
+					custom = { "node_modules", ".cache", ".git", ".DS_Store" },
+				}
+			})
 		end
 
 	},
