@@ -45,8 +45,8 @@ cmp.setup({
 		-- `Enter` key to confirm completion
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-		-- Cmd+Down to toggle completion
-		['<D-Down>'] = function()
+		-- Ctrl+. to toggle completion
+		['<C-.>'] = function()
 			if cmp.visible() then
 				cmp.close()
 			else
