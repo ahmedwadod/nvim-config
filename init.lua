@@ -52,6 +52,10 @@ require("lazy").setup({
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
 	{ 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+	},
 	{ 'neovim/nvim-lspconfig' },
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'hrsh7th/nvim-cmp' },
@@ -94,6 +98,7 @@ require("lazy").setup({
 
 	},
 })
+
 
 -- Needs to be here!
 require('ahmedwadod.color')

@@ -4,6 +4,18 @@ lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
+require("conform").setup({
+	formatters_by_ft = {
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		-- Add other file types as needed
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
+	},
+})
+
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
@@ -54,21 +66,4 @@ cmp.setup({
 			end
 		end,
 	})
-})
-
-
--- Auto format on save
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-	group = augroup,
-	callback = function()
-		local clients = vim.lsp.get_active_clients()
-		for _, client in ipairs(clients) do
-			if client.server_capabilities.documentFormattingProvider then
-				vim.lsp.buf.format({ async = false })
-				break
-			end
-		end
-	end,
 })
